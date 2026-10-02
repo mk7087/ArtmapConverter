@@ -12,6 +12,7 @@
     <script>
       (async function main() {
         let pyodide = await loadPyodide();
+        await pyodide.loadPackage([ "numpy", "scipy", "pillow", "openpyxl", "darkdetect" ]);
         const response = await fetch('./convert_main.py');
         if (!response.ok) {
           throw new Error(`HTTPエラー: ${response.status}`);
