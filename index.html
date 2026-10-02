@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtmapConverter</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js"></script>
+    <meta name="author" content="kurocat100">
+    <meta name="author" content="mk7087">
+  </head>
+  <body>
+    <script>
+      (async function main() {
+        let pyodide = await loadPyodide();
+        const response = await fetch('./convert_main.py');
+        if (!response.ok) {
+          throw new Error(`HTTPエラー: ${response.status}`);
+        }
+        const code = response.text();
+        console.log(pyodide.runPython(code));
+      })();
+    </script>
+  </body>
+</html>
